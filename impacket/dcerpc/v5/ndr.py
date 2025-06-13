@@ -190,11 +190,12 @@ class NDR(object):
             msg = self.__class__.__name__
         ind = ' '*indent
         if msg != '':
-            print("%s" % msg, end=' ')
+            print("%s" % msg, end='')
         for fieldName, fieldType in self.commonHdr+self.structure+self.referent:
             if fieldName in self.fields:
                 if isinstance(self.fields[fieldName], NDR):
-                    self.fields[fieldName].dump('\n%s%-31s' % (ind, fieldName+':'), indent = indent + 4),
+                    name = fieldName + ":"
+                    self.fields[fieldName].dump(f"\n{ind}{name:<65s}", indent = indent + 4),
                 else:
                     print(" %r" % (self[fieldName]), end=' ')
 
